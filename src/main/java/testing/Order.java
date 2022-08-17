@@ -17,4 +17,5 @@ public class Order {
     public List<Meal> getMeals() {
         return meals;
     }
+
 }
