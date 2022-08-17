@@ -1,7 +1,9 @@
 package testing;
 
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assumptions.assumingThat;
 
 class AccountTest {
 
@@ -44,6 +46,19 @@ class AccountTest {
         //then
         assertNotNull(defaultAddress);
 
+    }
+
+    @Test
+    @RepeatedTest(5)
+    void newAccountWithNotNullAddressShouldBeActive() {
+        //given
+        Address address = new Address("Pulawska", "55");
+        //when
+        Account account = new Account(address);
+        //then
+        assumingThat(address != null, () -> {
+            assertTrue(account.isActive());
+        });
     }
 
 }
